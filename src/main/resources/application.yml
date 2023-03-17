@@ -1,0 +1,27 @@
+server:
+    port: 8081
+
+
+spring:
+    application:
+        name: Capstone project
+    datasource:
+        url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE;
+        driver-class-name: org.h2.Driver
+        username: sa
+        password:
+    sql:
+        init:
+            schema-locations: classpath*:db/schema.sql
+            data-locations: classpath*:db/data.sql
+    jpa:
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        generate-ddl: false
+        hibernate:
+            ddl-auto: none
+        show-sql: false
+        open-in-view: false
+    h2:
+        console:
+            enabled: true
+            path: /h2
