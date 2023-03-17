@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import static com.gusev.project.domain.security.Roles.*;
+
 @EnableWebSecurity
 public class AuthenticationAndAuthorizationSecurityConfig extends WebSecurityConfigurerAdapter {
 
