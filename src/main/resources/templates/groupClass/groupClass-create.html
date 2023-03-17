@@ -1,0 +1,38 @@
+<!doctype html>
+<html th:replace="~{layouts/main :: layout(~{::main})}" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<main role="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 py-4">
+                <h2>Add group class</h2>
+                <form th:fragment="groupClassForm" method="post" th:action="@{/group-classes/create}" th:object="${groupClassDto}">
+                    <input th:replace="~{fragments/inputField :: input ('Name', 'name', 'text')}" />
+                    <input th:replace="~{fragments/inputField :: input ('Date', 'date', 'date')}" />
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="mr-sm-2" for="trainer">Trainer</label>
+                            <select class="custom-select mr-sm-2" id="trainer" th:field="${groupClassDto.trainer}">
+                                <option th:each="t : ${trainers}" th:value="${t.id}" th:text="${t}">Choose</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <a href="#" th:href="@{/group-classes}" class="btn btn-outline-secondary">Cancel</a>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary btn-block" type="submit">Add</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</main>
+
+</body>
+</html>

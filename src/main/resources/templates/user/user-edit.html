@@ -1,0 +1,40 @@
+<!doctype html>
+<html th:replace="~{layouts/main :: layout(~{::main})}" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<main role="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 py-4">
+                <h2>Edit user</h2>
+                <div class="row d-flex justify-content-left">
+                    <div class="col-md-4">
+                        <div th:if="${message}" th:text="${message}" class="alert alert-success"></div>
+                        <div th:if="${error}" th:text="${error}" class="alert alert-danger"></div>
+                    </div>
+                </div>
+                <form th:fragment="userForm" method="post" th:action="@{'/users/' + ${user.id} + '/update'}" th:object="${user}">
+                    <input th:replace="~{fragments/inputField :: input ('First name', 'firstName', 'text')}" />
+                    <input th:replace="~{fragments/inputField :: input ('Last name', 'lastName', 'text')}" />
+                    <input type="hidden" th:value="*{username}" th:field="*{username}" />
+                    <input type="hidden" th:value="*{password}" th:field="*{password}" />
+                    <div class="row">
+                        <div class="col-md-1">
+                            <a href="#" th:href="@{/users}" class="btn btn-outline-secondary">Cancel</a>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary btn-block" type="submit">Save</button>
+                        </div>
+                    </div>
+<!--                    <div th:if="${#fields.hasGlobalErrors()}">-->
+<!--                        <h3>Global errors:</h3>-->
+<!--                        <p th:each="err : ${#fields.errors}" th:text="${err}" class="error"></p>-->
+<!--                    </div>-->
+
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

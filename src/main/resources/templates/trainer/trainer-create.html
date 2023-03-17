@@ -1,0 +1,31 @@
+<!doctype html>
+<html th:replace="~{layouts/main :: layout(~{::main})}" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<main role="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 py-4">
+                <h2>Add trainer</h2>
+                <form th:fragment="userForm" method="post" th:action="@{/trainers/create}" th:object="${trainerDto}">
+                    <input th:replace="~{fragments/inputField :: input ('First name', 'firstName', 'text')}" />
+                    <input th:replace="~{fragments/inputField :: input ('Last name', 'lastName', 'text')}" />
+                    <input th:replace="~{fragments/inputField :: input ('Username', 'username', 'text')}" />
+                    <input th:replace="~{fragments/inputField :: input ('Password', 'password', 'password')}" />
+                    <div class="row">
+                        <div class="col-md-1">
+                            <a href="#" th:href="@{/trainers}" class="btn btn-outline-secondary">Cancel</a>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary btn-block" type="submit">Add</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+</body>
+</html>

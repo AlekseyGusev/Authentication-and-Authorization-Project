@@ -1,0 +1,22 @@
+<!doctype html>
+<html th:replace="~{layouts/main :: layout(~{::main})}" xmlns:th="http://www.thymeleaf.org" lang="">
+<body>
+
+<main role="main">
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="d-flex justify-content-center">Fitness Club Management System</h1>
+            <h3 class="d-flex justify-content-center">(Thymeleaf + Spring Boot + Spring Security)</h3>
+            <p class="d-flex justify-content-center">This is a homepage accessible to everyone</p>
+            <p class="d-flex justify-content-center">Navigation menu will be available after authorization</p>
+
+            <div th:replace="fragments/account-list :: account-list">
+            </div>
+        </div>
+    </div>
+
+</main>
+
+</body>
+</html>

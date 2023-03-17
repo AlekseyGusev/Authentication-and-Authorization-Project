@@ -1,0 +1,32 @@
+<!doctype html>
+<html th:replace="~{layouts/main :: layout(~{::main})}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+
+<main role="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 py-4">
+                <h2>GROUP CLASSES</h2>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-left">
+            <div class="col-md-4">
+                <div th:if="${message}" th:text="${message}" class="alert alert-success"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div th:replace="groupClass/groupClassesTable :: groupClassesTable"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 py-4">
+                <a sec:authorize="isAuthenticated() && hasRole('ADMIN')" href="#" th:href="@{/group-classes/create}" type="button" class="btn btn-primary">Add Class</a>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+</body>
+</html>

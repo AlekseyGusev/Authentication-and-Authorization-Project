@@ -1,0 +1,32 @@
+<!doctype html>
+<html th:replace="~{layouts/main :: layout(~{::main})}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+
+<main role="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 py-4">
+                <h2>TRAINERS</h2>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-left">
+            <div class="col-md-4">
+                <div th:if="${message}" th:text="${message}" class="alert alert-success"></div>
+                <div th:if="${error}" th:text="${error}" class="alert alert-danger"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <table th:replace="trainer/trainersTable :: trainersTable"></table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 py-4">
+                <a sec:authorize="isAuthenticated() && hasRole('ADMIN')" href="#" th:href="@{/trainers/create}" type="button" class="btn btn-primary">Add Trainer</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

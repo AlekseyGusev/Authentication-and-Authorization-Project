@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+
+<div th:fragment="userInfo">
+    <div class="row">
+        <div class="col-md-12 py-4">
+            <h3 th:text="${user.username + ' (' + user.firstName + ' ' + user.lastName + ')'}"></h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p th:text="'Trainer: ' + (${user.trainer} == null ? 'No Trainer' :  ${user.trainer.firstName + ' ' + user.trainer.lastName})"></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div th:if="${message}" th:text="${message}" class="alert alert-success"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p th:if="${user.groupClasses.empty}">Group Classes: No Classes</p>
+        </div>
+    </div>
+    <div th:if="${!user.groupClasses.empty}">
+        <p>Group classes</p>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Class name</th>
+                <th>Date</th>
+                <th>Trainer</th>
+                <th sec:authorize="(isAuthenticated() && hasAnyRole('ADMIN', 'USER'))"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="class : ${user.groupClasses}">
+                <td th:text="${class.name}"></td>
+                <td th:text="${class.date}"></td>
+                <td th:text="${class.trainer} == null ? 'No Trainer' : ${class.trainer.firstName + ' ' + class.trainer.lastName}"></td>
+                <td sec:authorize="(isAuthenticated() && hasAnyRole('ADMIN', 'USER'))">
+                    <a href="#" th:href="@{'/users/' + ${user.id} + '/group-classes/' + ${class.id} + '/cancel-registration'}" type="button" class="btn btn-outline-danger">Cancel</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

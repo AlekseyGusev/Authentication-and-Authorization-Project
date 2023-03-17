@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+
+<div th:fragment="trainerGroupClassesTable">
+    <div th:if="${!groupClasses.empty}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Class name</th>
+                <th>Date</th>
+                <th sec:authorize="(isAuthenticated() && hasRole('USER'))">Trainer</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="class : ${groupClasses}">
+                <td th:text="${class.name}"></td>
+                <td th:text="${class.date}"></td>
+                <td sec:authorize="(isAuthenticated() && hasRole('USER'))" th:text="${class.trainer} == null ? 'No Trainer' :  ${class.trainer.firstName + ' ' + class.trainer.lastName}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
