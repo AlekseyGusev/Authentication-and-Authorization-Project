@@ -7,7 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import static com.epam.rd.capstoneproject.domain.security.Roles.*;
+import static com.gusev.project.domain.security.Roles.TRAINER;
+import static com.gusev.project.domain.security.Roles.USER;
 
 @Entity
 @Table(name = "Roles")
