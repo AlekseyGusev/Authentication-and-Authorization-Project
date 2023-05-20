@@ -1,6 +1,7 @@
 package com.gusev.project.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -19,8 +20,8 @@ public class AuthenticationAndAuthorizationSecurityConfig extends WebSecurityCon
     private final UserDetailsService userDetailsService;
 
     @Autowired
-    public AuthenticationAndAuthorizationSecurityConfig(UserDetailsService capstoneProjectUserDetailsService) {
-        this.userDetailsService = capstoneProjectUserDetailsService;
+    public AuthenticationAndAuthorizationSecurityConfig(UserDetailsService authenticationAndAuthorizationUserDetailsService) {
+        this.userDetailsService = authenticationAndAuthorizationUserDetailsService;
     }
 
     @Override
